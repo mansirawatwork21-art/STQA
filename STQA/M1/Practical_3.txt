@@ -1,0 +1,114 @@
+Practical 3a: Login automation and validation, google test
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class pract_3{
+public static void main(String[] args){
+System.setProperty("webdriver.chrome.driver","D://");
+WebDriver chromedrive = new ChromeDriver();
+String url= "googlw.com";
+String expectedtitle="Google";
+String actualtitle="";
+chromedrive.get(url);
+chromedrive.manage().window().maximize();
+actualtitle=chromedrive.getTitle();
+if(actualtitle.contentEquals(expectedtitle))
+{
+System.out.println("Title Matches");
+}
+else
+{
+System.out.println("Title Dont Match");
+}
+try {
+Thread.sleep(3000);
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+chromedrive.close();
+System.out.println("Performed By 21 - Chintu Mintu.");
+}
+}
+
+Practical 3b : Login automation and validation ,Local login page Testing
+
+In Login.html :
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+<form action="Welcome.html"method="GET">
+<H1> LOGIN</H1><br/>
+Username<input type="text" name="username"/><br/> Passcode<input
+type="password" name="password"/><br/> <button type="submit"
+name="submit">Submit</button> </form>
+</body>
+</html>
+
+IN Welcome.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+</head>
+<body>
+<h1>Welcome user</h1>
+</body>
+</html>
+
+Soruce code:
+
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class pract_3b{
+public static void main(String[] args){
+System.setProperty("webdriver.chrome.driver","D://");
+WebDriver chromedrive = new ChromeDriver();
+String username="Chintu";
+String password="1234";
+Strig url="Login.html";
+chromedrive.get(url);
+chromedrive.findElement(By.name("username")).clear();
+chromedrive.findElement(By.name("username")).sendKeys(username);
+chromedrive.findElement(By.name("password")).clear();
+chromedrive.findElement(By.name("password")).sendKeys(password);
+chromedrive.findElement(By.name("submit")).click();
+String title= chreomedrive.getTitle();
+String Actualtitle="Welcome";
+if(title.equals(Actualtile))
+System.out.println("Title Match");
+else
+System.out.println("Title dont match");
+try {
+Thread.sleep(3000);
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+chromedrive.close();
+System.out.println("Performed By 21 - Chintu Mintu.");
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+Practical no. 7
+Aim: Checkbox Identification and Validation
+Step 1. Open Notepad, write down the following code and Save the file as
+Output.html in D drive → Practical no. 7
+<html>
+<body>
+<form>
+<h2>Select Languages Known</h2>
+<input type="checkbox" name="lang" value="Java" checked>Java<br>
+<input type="checkbox" name="lang" value="Php">Php<br>
+<input type="checkbox" name="lang" value="ASP.Net">ASP.Net<br>
+<input type="checkbox" name="lang" value="Python" checked>Python<br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+
+Step 4: Create Java Class
+Right-click on the Source Packages folder in the Projects window. Source
+Packages → New → Java Class
+Class name: CheckboxCount and then Click Finish
+Source code -
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class CheckboxCount {
+public static void main(String[] args) {
+System.setProperty("webdriver.chrome.driver",
+" D://STQA//chromedriver-win64//chromedriver.exe ");
+WebDriver driver = new ChromeDriver();
+driver.get("D:/Practical7/Output.html");
+int checkbox = 0;
+int checkboxunchk = 0;
+List<WebElement> checkboxes =
+driver.findElements(By.xpath("//input[@type='checkbox']"));
+for (WebElement el : checkboxes) {
+if (el.isSelected()) {
+checkbox++;
+} else {
+checkboxunchk++;
+}
+}
+System.out.println("Checkboxes: " + checkboxes.size());
+System.out.println("Total Checked items: " + checkbox);
+System.out.println("Total Unchecked items: " + checkboxunchk);
+driver.close();
+}
+}

@@ -1,0 +1,35 @@
+Practical 6: Object Identification and Counting on Web Page
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.List;
+public class ObjectCount {
+public static void main(String[] args) {
+// Set ChromeDriver path
+System.setProperty(
+"webdriver.chrome.driver","D://STQA//chromedriver-win64//chromedriver.exe");
+WebDriver driver = new ChromeDriver();
+driver.get("https://classroom.google.com/");
+List<WebElement>objects= driver.findElemnts(By.xpath("//*"));
+List<WebElement>links= driver.findElemnts(By.tagName("a"));
+List<WebElement> images =driver.findElements(By.tagName("img"));
+List<WebElement> buttons =driver.findElements(By.tagName("button"));
+List<WebElement> inputs =driver.findElements(By.tagName("input"));
+System.out.println("Total Objects: " + objects.size());
+System.out.println("Total Links: " + links.size());
+System.out.println("Total Images: " + images.size());
+System.out.println("Total Buttons: " + buttons.size());
+System.out.println("Total Input Elements: " + inputs.size());
+System.out.println();
+// Display categorized counts
+System.out.println("----- Categorized Object Count -----");
+System.out.println("Links : " + links.size());
+System.out.println("Images : " + images.size());
+System.out.println("Buttons : " + buttons.size());
+System.out.println("Input Elements : " + inputs.size());
+// Close browser
+driver.quit();
+}
+}

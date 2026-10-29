@@ -1,0 +1,70 @@
+Practical 8:List and Combo Box Item Verification
+ save as Output.html in D drive → Practical no. 8
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dropdown</title>
+</head>
+<body>
+<h2>Student Course Selection</h2>
+<label>Select Course:</label>
+<select id="course">
+<option>Java</option>
+<option>Python</option>
+<option>Selenium</option>
+<option>HTML</option>
+</select>
+</body>
+</html>
+
+source code:
+import java.util.List;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+public class Pract8 {
+public static void main(String[] args) throws InterruptedException {
+System.setProperty("webdriver.chrome.driver",
+"D:/STQA/chromedriver-win64/chromedriver.exe"
+);
+WebDriver driver = new ChromeDriver();
+driver.get("file:///D:/STQA/dropdown.html");
+Thread.sleep(3000);
+// Find dropdown
+WebElement list =
+driver.findElement(By.id("course"));
+Select dropdown = new Select(list);
+// Count items
+List<WebElement> items =
+dropdown.getOptions();
+System.out.println(
+"Total no. of Items: " + items.size()
+);
+// Check default value
+System.out.println(
+"Default Value: " +
+dropdown.getFirstSelectedOption().getText()
+);
+// Select Java
+dropdown.selectByVisibleText("Java");
+System.out.println(
+"Selected: " +
+dropdown.getFirstSelectedOption().getText()
+);
+// Select Selenium
+dropdown.selectByVisibleText("Selenium");
+System.out.println(
+
+"Selected: " +
+dropdown.getFirstSelectedOption().getText()
+);
+// Select by index
+dropdown.selectByIndex(3);
+System.out.println(
+"Selected: " +
+dropdown.getFirstSelectedOption().getText()
+);
+Thread.sleep(3000);
+driver.quit();
+}
+}

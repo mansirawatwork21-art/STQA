@@ -1,0 +1,64 @@
+import java.io.File;
+import jxl.*;
+import jxl.write.*;
+public class Practical4 {
+public static void main(String[] args) {
+try {
+// Source Excel file
+Workbook sourceWorkbook = Workbook.getWorkbook(
+new File("D:\\Practical no.4\\Source_P4.xls"));
+Sheet sourceSheet = sourceWorkbook.getSheet(0);
+// Destination Excel file
+WritableWorkbook destinationWorkbook =
+Workbook.createWorkbook(
+new File("D:\\Practical no.4\\ Destination_P4.xls"));
+WritableSheet destinationSheet =
+
+destinationWorkbook.createSheet("Result", 0);
+// Copy headings
+for (int col = 0; col < 6; col++) {
+Label heading = new Label(col, 0,
+sourceSheet.getCell(col, 0).getContents());
+destinationSheet.addCell(heading);
+}
+// Add Result heading
+destinationSheet.addCell(new Label(6, 0, "Result"));
+// Read student records
+for (int row = 1; row < sourceSheet.getRows(); row++) {
+// Read marks
+int stqa = Integer.parseInt(
+sourceSheet.getCell(2, row).getContents());
+int ins = Integer.parseInt(
+sourceSheet.getCell(3, row).getContents());
+int ai = Integer.parseInt(
+sourceSheet.getCell(4, row).getContents());
+int spm = Integer.parseInt(
+sourceSheet.getCell(5, row).getContents());
+// Determine pass/fail
+String result;
+if (stqa >= 10 && ins >= 10 &&
+ai >= 10 && spm >= 10)
+result = "PASS";
+else
+result = "FAIL";
+// Copy original data
+for (int col = 0; col < 6; col++) {
+Label data = new Label(col, row,
+sourceSheet.getCell(col, row).getContents());
+destinationSheet.addCell(data);
+}
+// Write result
+destinationSheet.addCell(
+new Label(6, row, result));
+}
+// Save destination file
+destinationWorkbook.write();
+destinationWorkbook.close();
+
+sourceWorkbook.close();
+System.out.println("Records updated successfully.");
+} catch (Exception e) {
+System.out.println(e);
+}
+}
+}

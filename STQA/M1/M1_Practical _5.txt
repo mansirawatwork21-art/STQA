@@ -1,0 +1,35 @@
+Practical 5: Data Extraction and Score Analysis from Web Table -
+
+Data_P5.xls in D://Practical no. 5
+uncheck create main class
+ADD JXL LIBRARY(Select jxl-2.6.12.jar.)
+
+import java.io.File;
+import java.io.IOException;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.biff.Biff.Exception;
+public class Pract5 {
+public static void main(String[] args) throws IOException,BiffException{
+File excelfile= new File("D:/Data_P5.xls");
+Workbook workbook= Workbook.getWorkbook(excelfile);
+Sheet sheet= workbook.getSheet(0);
+int countOneSubjectAbove60=0;
+int countAllSubjectAbove60=0;
+for (i=1,i<sheet.getRows(),i++){
+int stqa=Integer.parseInt(sheet.getCell(2,i).getContents());
+int ins= Integer.parseInt(sheet.getCell(3,i).getContents());
+int ai= Integer.parseInt(sheet.getCell(4,i).getContents());
+if(stqa>60||ins>60||ai>60){
+countOneSubjectAbove60++;
+}
+if(stqa>60 && ins>60 && ai>60){
+countAllSubjectAbove60++;
+}
+}
+System.out.println("Students scoring >60 in any one subject : " +
+countOneSubjectAbove60);
+System.out.println("Students scoring >60 in all subjects : " + countAllSubjectsAbove60);
+workbook.close();
+}
+}
