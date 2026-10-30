@@ -1,0 +1,43 @@
+PRACTICAL NO. 09 – LOAD TESTING USING APACHE JMETER
+
+AIM: To perform load testing on a web application using JMeter and
+analyze response time, throughput and errors.
+
+TOOL: Apache JMeter
+
+STEPS:
+
+1.  Open Apache JMeter.
+2.  Right-click Test Plan > Add > Threads (Users) > Thread Group.
+3.  Configure the Thread Group: Test 1: 10 users, 10 seconds ramp-up, 5
+    loops = 50 requests.
+4.  Right-click Thread Group > Add > Sampler > HTTP Request.
+5.  Enter: Protocol: https Server Name: example.com Method: GET Path: /
+6.  Add these listeners:
+    -   Summary Report
+    -   Aggregate Report
+    -   Response Time Graph
+    -   Graph Results
+7.  Save the test plan as LoadTesting21.jmx.
+8.  Click Start and observe the reports.
+9.  Repeat with: Test 2: 50 users, 30 seconds ramp-up, 10 loops = 500
+    requests. Test 3: 100 users, 60 seconds ramp-up, 10 loops = 1000
+    requests.
+10. Compare response time, throughput and error percentage.
+
+IMPORTANT TERMS: - Response Time: Time taken to receive a response. -
+Throughput: Number of requests processed per unit of time. - Error
+Percentage: (Failed Requests / Total Requests) x 100. - Ideally,
+unexpected errors should be 0%.
+
+HTML REPORT: Open Command Prompt in JMeter’s bin folder and run:
+jmeter.bat -n -t “LoadTesting21.jmx” -l “results.jtl” -e -o “report”
+
+Open the generated report folder’s index.html in a browser.
+
+OBSERVATION: Compare the performance for 10, 50 and 100 virtual users.
+Record actual response time, throughput and error percentage from JMeter
+reports.
+
+RESULT: Load testing was performed using Apache JMeter. Different user
+loads were tested and performance was analyzed using graphical reports.
